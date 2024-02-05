@@ -6,8 +6,8 @@ import UserModel from "../Model/UserModel.js";
 
 // Register New User
 export const registerUser = async (req, res) => {
-    const { username } = req.body;
-    const oldUser = await UserModel.findOne({ username })
+    const { email } = req.body;
+    const oldUser = await UserModel.findOne({ email })
     if (oldUser) {
         res.status(400).json("User Already registered")
     }else{
@@ -20,7 +20,7 @@ export const registerUser = async (req, res) => {
     try {
         const user = await newUser.save()
         const token = jwt.sign({
-            username: user.username,
+            username: user.email,
             id: user._id
 
         }, process.env.JWT_SECRET, { expiresIn: '2' })
@@ -35,10 +35,10 @@ export const registerUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const user = await UserModel.findOne({ username: username })
+        const user = await UserModel.findOne({ email: email })
         if (user) {
             const validity = await bcypt.compare(password, user.password)
             if (!validity) {
@@ -46,7 +46,7 @@ export const loginUser = async (req, res) => {
                 res.status(400).json("Wrong password")
             } else {
                 const token = jwt.sign({
-                    username: user.username,
+                    username: user.email,
                     id: user._id
         
                 }, process.env.JWT_SECRET, { expiresIn: '2' })

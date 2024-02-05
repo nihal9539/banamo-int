@@ -14,22 +14,22 @@ function NavBar() {
         setModelOpen(prev => !prev)
     }
     return (
-        <Navbar expand="lg" className="bg-body-tertiaryr " style={{paddingLeft:"50px"}}>
+        <Navbar expand="lg" className="bg-body-tertiary " style={{paddingLeft:"50px"}}>
             <Container className=''>
                 {/* <Navbar.Brand href="#home"></Navbar.Brand> */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav " className=''>
                     <Nav className="d-flex gap-5 " >
 
-                        <Nav.Link  className="me-5 pe-5 " href="#link">
+                        <Nav.Link  className="me-5 pe-5 " >
                         <img src="./whole.png" alt="" />
                         </Nav.Link>
-                        <Nav.Link  className="me-5 pe-5 " href="#link">
+                        <Nav.Link  className="me-5 pe-5 " >
                             <form className="bg-gradient p-2 w-100 flex justify-content-center align-items-center  flex-row  " style={{ backgroundColor: "#F2F2F2", borderRadius: 20 }}>
                                 <IoSearchSharp />
                                 <input type="search" className='bg-transparent w-75' placeholder="Search for your favorite groups in ATG" style={{ outline: "none", border: "none" }} />
                             </form></Nav.Link>
-                        <Nav.Link  className="me-5 pe-5 " href="#link">
+                        <Nav.Link  className="me-5 pe-5 " >
                             <span className="navbar-brand" onClick={() => setModelOpen(prev => !prev)}>Create account. <span style={{ color: "blue" }}>It’s free!</span><MdArrowDropDown /></span>
                         </Nav.Link>
 
