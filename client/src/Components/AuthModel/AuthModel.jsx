@@ -46,8 +46,9 @@ export default function AuthModel({ modelOpen, setModelOpen }) {
 
       signup(data).then((res) => {
         console.log(res.data);
+        localStorage.setItem("login",true)
         // console.log(res.data);
-        toast.success("Account Created")
+       
         setData({
           firstname: "",
           lastname: "",
@@ -57,6 +58,8 @@ export default function AuthModel({ modelOpen, setModelOpen }) {
         })
 
         setModelOpen(false)
+        window.location.reload()
+
       }).catch((err) => {
         console.log(err.response.data);
         toast.error(err.response.data)
@@ -71,7 +74,8 @@ export default function AuthModel({ modelOpen, setModelOpen }) {
 
       login(data).then((res) => {
         console.log(res.data);
-        toast.success("Login Success")
+        localStorage.setItem("login",true)
+
         setData({
           firstname: "",
           lastname: "",
@@ -81,6 +85,8 @@ export default function AuthModel({ modelOpen, setModelOpen }) {
         })
 
         setModelOpen(false)
+        window.location.reload()
+
       }).catch((err) => {
         console.log(err.response.data);
         toast.error(err.response.data)

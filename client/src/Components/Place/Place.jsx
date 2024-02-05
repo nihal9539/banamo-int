@@ -8,10 +8,11 @@ import { followData } from '../../data/followersData';
 
 
 const Place = () => {
-    const [place, setPlacw] = useState('')
+    const [place, setPlace] = useState('')
     const handlechange = (e) => {
-        setPlacw(e.target.value)
+        setPlace(e.target.value)
     }
+    const user = localStorage.getItem('login')
     return (
         <div className='d-flex  flex-column  w-100 gap-5'>
             <form className=" p-2 gap-1 flex justify-content-center align-items-center flex flex-column " >
@@ -27,15 +28,17 @@ const Place = () => {
                 < AiFillLike />
                 <span style={{fontSize:15, fontWeight:600}}>Recommended Groups</span>
 
-                {followData.map((item)=>(
-                    <div className='d-flex  flex-row justify-content-between px-5 py-3    '>
-                        <div className="d-flex align-items-center justify-content-between gap-2">
-                        <img src={item.img} width={50} height={50} style={{borderRadius:"50%"}} alt="" />
-                        <span>{item.name}</span>
+                {user ? (
+                    followData.map((item)=>(
+                        <div className='d-flex flex-row justify-content-between px-5 py-3 '>
+                            <div className="d-flex align-items-center justify-content-between gap-2">
+                            <img src={item.img} width={50} height={50} style={{borderRadius:"50%"}} alt="" />
+                            <span>{item.name}</span>
+                            </div>
+                            <button className='btn  px-3 rounded-4 ' style={{background:"#EDEEF0"}}>follow</button>
                         </div>
-                        <button className='btn rounded-5  py-0 px-4' style={{background:"#EDEEF0"}}>follow</button>
-                    </div>
-                ))}
+                    ))
+                ):""}
             </div>
         </div>
     )

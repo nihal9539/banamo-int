@@ -32,7 +32,8 @@ const Home = () => {
     <div className='d-flex flex-column'>
       {windowDimension.winwidth >= 990? "" : <button onClick={() => setModelOpen(!modelOpen)} className=' d-inline-flex position-fixed justify-content-end z-1 p-3' style={{ bottom: "2.5rem", right: "2.5rem", borderRadius: "50%", backgroundImage: "linear-gradient(rgba(255, 92, 92, 1), rgba(240, 86, 138, 1))" }}><RiPencilLine color='white' size={30} /></button>
       }
-      <NavBar />
+      
+      {windowDimension.winwidth >= 769 ? <NavBar /> : ""}
       <BackGroundImage width={windowDimension.winwidth} />
       <JoinGroupSection width={windowDimension.winwidth} />
       <PostAndDetails width={windowDimension.winwidth} />

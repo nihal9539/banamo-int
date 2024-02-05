@@ -4,12 +4,16 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { MdGroupAdd } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 import AuthModel from '../AuthModel/AuthModel';
+import { RiLogoutBoxRLine } from "react-icons/ri";
+import { toast } from 'react-toastify';
+
 
 
 const JoinGroupSection = ({ width }) => {
 
     const [alignment, setAlignment] = useState('left');
     const [modelOpen, setModelOpen] = useState(false)
+    const user = localStorage.getItem('login')
 
     const handleAlignment = (event, newAlignment) => {
         setAlignment(newAlignment);
@@ -18,6 +22,11 @@ const JoinGroupSection = ({ width }) => {
         " All posts",
         " Article"
     ]
+    const handlesignout = ()=>{
+        localStorage.removeItem("login")
+        window.location.reload()
+        toast.error("Log out")
+    }
     return (
         <div>
 
@@ -42,7 +51,11 @@ const JoinGroupSection = ({ width }) => {
                     </div>
                     <div className='d-flex flex-row gap-2'>
                         <button className='btn ' style={{ background: '#EDEEF0' }}>Write a post <MdArrowDropDown /></button>
-                        <button className='btn btn-primary align-items-center d-flex gap-1' onClick={() => setModelOpen(prev => !prev)}><MdGroupAdd />Join Group</button>
+                        {user ?
+                            <button className='btn btn-white border-1 border-black align-items-center d-flex gap-1' onClick={handlesignout}><RiLogoutBoxRLine />Leave Group</button>
+                            :
+                            <button className='btn btn-primary align-items-center d-flex gap-1' onClick={() => setModelOpen(prev => !prev)}><MdGroupAdd />Join Group</button>
+                        }
                     </div>
                 </div>
                 <AuthModel modelOpen={modelOpen} setModelOpen={setModelOpen} />
